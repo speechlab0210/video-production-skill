@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1920px; height: 1080px;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: #ffffff;
+    font-family: 'Microsoft JhengHei', 'Noto Sans TC', sans-serif;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    padding: 80px;
+    overflow: hidden;
+  }
+  .title {
+    font-size: 72px; font-weight: bold;
+    text-align: center; margin-bottom: 40px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  }
+  .content {
+    font-size: 46px; line-height: 1.6;
+    text-align: center; max-width: 1600px;
+  }
+  .highlight { color: #e94560; font-weight: bold; font-size: 52px; }
+  .emoji { font-size: 80px; }
+  .big-number { font-size: 84px; font-weight: bold; color: #e94560; }
+  .slide-number {
+    position: absolute; bottom: 30px; right: 50px;
+    font-size: 24px; opacity: 0.5;
+  }
+  .channel {
+    position: absolute; bottom: 30px; left: 50px;
+    font-size: 24px; opacity: 0.5;
+  }
+</style>
+</head>
+<body>
+  <div class="title"><!-- TITLE HERE --></div>
+  <div class="content"><!-- CONTENT HERE --></div>
+  <div class="channel">🎬 Your Channel Name</div>
+  <div class="slide-number">1/10</div>
+</body>
+</html>

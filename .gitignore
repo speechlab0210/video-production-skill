@@ -1,0 +1,12 @@
+node_modules/
+.env
+*.mp3
+*.mp4
+*.srt
+temp/
+audio/
+slides_raw/
+verify*.png
+cover_raw.png
+thumbnail.*
+__pycache__/

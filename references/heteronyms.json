@@ -1,0 +1,112 @@
+{
+  "_meta": {
+    "purpose": "TTS-facing Chinese heteronym ('破音字') danger list. Scan narration before sending to ElevenLabs — flag these chars and rewrite to safe alternatives.",
+    "source": "observed from 2026-04-22 (還→hái mispronounced as hái for 還給) and 2026-04-23 (還是→hái mispronounced as huán-shì) — ElevenLabs multilingual_v2 makes context-blind defaults for Chinese heteronyms",
+    "last_updated": "2026-04-23",
+    "confidence_note": "Entries marked 'confirmed' are observed in actual TTS output. Entries marked 'suspected' are theoretical from the character being known-破音字 — verify before relying on rewrite."
+  },
+  "chars": {
+    "還": {
+      "readings": { "hái": "仍然/還是/還在/還有", "huán": "歸還/償還/還給/還錢" },
+      "status": "confirmed",
+      "observed_failures": [
+        "還給 — ElevenLabs read as hái-gěi (wrong, should be huán-gěi) — 2026-04-22 demo",
+        "還是 — ElevenLabs read as huán-shì (wrong, should be hái-shì) — 2026-04-23 v2"
+      ],
+      "rule": "AVOID in narration entirely. ElevenLabs is unreliable in both directions.",
+      "rewrites": {
+        "還是": "仍然 / 依然",
+        "還有": "另外 / 而且",
+        "還在": "仍在",
+        "還要": "仍要 / 依然要",
+        "還好": "所幸 / 幸好",
+        "還給": "退回 / 歸（須測試）",
+        "歸還": "退回 / 交回",
+        "還錢": "還錢（須測試）/ 把錢退回"
+      }
+    },
+    "行": {
+      "readings": { "xíng": "前行/可行/行動", "háng": "銀行/行業/一行字" },
+      "status": "suspected",
+      "rule": "前後文足以消歧通常 OK，但含「行業」「銀行」時特別留意",
+      "rewrites": {}
+    },
+    "重": {
+      "readings": { "zhòng": "重要/重量/沉重", "chóng": "重複/重新/重來" },
+      "status": "suspected",
+      "rule": "「重新 / 重複」要特別檢查",
+      "rewrites": { "重新": "再次 / 重新（須測試）", "重複": "反覆" }
+    },
+    "長": {
+      "readings": { "cháng": "長度/長期", "zhǎng": "成長/長大/隊長/家長" },
+      "status": "suspected",
+      "rule": "「長大 / 成長」要檢查",
+      "rewrites": { "長大": "成年（若語境允許）" }
+    },
+    "得": {
+      "readings": { "dé": "獲得/得到", "děi": "必須/不得不", "de": "助詞「做得好」" },
+      "status": "suspected",
+      "rule": "「必須」語意用「dei」通常正確，但助詞 de 可能被誤讀",
+      "rewrites": { "得": "須測試 context" }
+    },
+    "為": {
+      "readings": { "wéi": "作為/為人/身為", "wèi": "為了/因為" },
+      "status": "suspected",
+      "rule": "一般 context 足以消歧；仍需抽查",
+      "rewrites": {}
+    },
+    "的": {
+      "readings": { "de": "助詞", "dí": "的確", "dì": "目的" },
+      "status": "suspected",
+      "rule": "助詞 de 預設正確；「的確/目的」要檢查",
+      "rewrites": { "的確": "確實", "目的": "目標（若語境允許）" }
+    },
+    "著": {
+      "readings": { "zhe": "助詞「看著」", "zháo": "著火/著急", "zhuó": "顯著/著作" },
+      "status": "suspected",
+      "rule": "助詞 zhe 預設正確；其他用法抽查",
+      "rewrites": {}
+    },
+    "覺": {
+      "readings": { "jué": "感覺/覺得", "jiào": "睡覺" },
+      "status": "suspected",
+      "rule": "低風險，一般 context 足夠",
+      "rewrites": {}
+    },
+    "空": {
+      "readings": { "kōng": "空氣/天空", "kòng": "空白/空間（名詞用）" },
+      "status": "suspected",
+      "rule": "低風險",
+      "rewrites": {}
+    },
+    "好": {
+      "readings": { "hǎo": "好/很好", "hào": "愛好/好奇" },
+      "status": "suspected",
+      "rule": "「好奇 / 愛好」要檢查",
+      "rewrites": { "好奇": "感到疑惑（若語境允許）" }
+    },
+    "差": {
+      "readings": { "chā": "差別/差距", "chà": "差勁/差點", "chāi": "出差/差事" },
+      "status": "suspected",
+      "rule": "三讀音容易混；含「出差」時抽查",
+      "rewrites": {}
+    },
+    "便": {
+      "readings": { "biàn": "方便/便利", "pián": "便宜" },
+      "status": "suspected",
+      "rule": "「便宜」要檢查",
+      "rewrites": {}
+    },
+    "參": {
+      "readings": { "cān": "參加/參考", "shēn": "人參（少見）" },
+      "status": "suspected",
+      "rule": "一般低風險",
+      "rewrites": {}
+    }
+  },
+  "usage": {
+    "preflight_check": "In tts_with_asr.js, before calling TTS, run narration.join('\\n') through a char scan. For each char in this map, flag the occurrence with its context. Humans/Claude reviews and rewrites as needed.",
+    "rewrite_pass": "Optional auto-substitute: scan for exact word keys in rewrites (e.g. 還是→仍然) and swap. Must only run if Claude explicitly approves the rewrite for the given narrative (some rewrites change tone).",
+    "post_hoc_probe": "After TTS, run Whisper back-transcription. For each heteronym occurrence, check that the char appears at the expected position. If Whisper returns a different char (e.g. 換 instead of 還), it's likely a mispronunciation — retry or rewrite."
+  }
+}

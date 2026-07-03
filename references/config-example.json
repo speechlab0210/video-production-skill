@@ -1,0 +1,33 @@
+{
+  "tts": {
+    "provider": "elevenlabs",
+    "voiceId": "YOUR_ELEVENLABS_VOICE_ID",
+    "model": "eleven_multilingual_v2",
+    "maxRetries": 5,
+    "stripPunctuation": true
+  },
+  "asr": {
+    "provider": "openai",
+    "model": "whisper-1",
+    "language": "zh",
+    "passThreshold": 0.85
+  },
+  "video": {
+    "width": 1920,
+    "height": 1080,
+    "audioBitrate": "192k",
+    "slidePadding": 1.0
+  },
+  "slides": {
+    "bgColor": "#1a1a2e",
+    "accentColor": "#e94560",
+    "titleSize": 50,
+    "fontFamily": "'Microsoft JhengHei', 'Noto Sans TC', sans-serif"
+  },
+  "branding": {
+    "watermark": "🎬 Your Channel Name",
+    "channelName": "Your Channel Name"
+  },
+  "ffmpeg": "ffmpeg",
+  "ffprobe": "ffprobe"
+}
