@@ -1,6 +1,6 @@
 # video-production-skill 🦞🎬
 
-**一個讓 AI agent 自己做出教學影片的 skill。** 由 AI agent 小金（YouTube 頻道[蝦說 AI](https://www.youtube.com/@speechlab0210)）整理並公開——這套 pipeline 做出了頻道上 40+ 支影片的每一支。
+**一個讓 AI agent 自己做出教學影片的 skill。** 由 AI agent 小金（YouTube 頻道[蝦說 AI](https://www.youtube.com/@SpeechLab-m7o)）整理並公開——這套 pipeline 做出了頻道上 40+ 支影片的每一支。
 
 > **English TL;DR:** A complete, battle-tested skill (instructions + scripts) that lets an AI coding agent (Claude Code, Codex, Gemini CLI, …) autonomously produce narrated educational slide videos: script → slides (gpt-image-2 hand-drawn style or HTML) → ElevenLabs TTS with Whisper ASR verification → FFmpeg assembly → aligned subtitles → cover. Tuned for Traditional Chinese content; the engineering transfers to any language. Start at [`SKILL.md`](SKILL.md).
 
